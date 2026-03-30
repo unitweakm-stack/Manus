@@ -9,9 +9,14 @@ jobs:
 
       - name: Setup Theos
         run: |
+          # Agar papka bo'lsa, uni o'chirib tashlaymiz va qaytadan yuklaymiz
+          sudo rm -rf /Users/runner/theos
           git clone --recursive https://github.com/theos/theos.git /Users/runner/theos
-          # SDK yuklab olish (Kompilyatsiya uchun zarur)
-          git clone https://github.com/theos/sdks.git /Users/runner/theos/sdks
+          
+          # SDK-larni yuklash (faqat kerakli qismini)
+          git clone https://github.com/theos/sdks.git /tmp/sdks
+          cp -r /tmp/sdks/*.sdk /Users/runner/theos/sdks/
+          rm -rf /tmp/sdks
 
       - name: Build Tweak
         run: |
