@@ -1,24 +1,10 @@
-name: Build Tweak
-on: [push, pull_request]
-jobs:
-  build:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+TARGET := iphone:clang:latest:14.0
+ARCHS := arm64 arm64e
 
-      - name: Setup Theos
-        run: |
-          git clone --recursive https://github.com/theos/theos.git ~/theos
-          echo "THEOS=~/theos" >> $GITHUB_ENV
+include <LaTex>$(THEOS)/makefiles/common.mk
 
-      - name: Build Tweak
-        run: |
-          export THEOS=~/theos
-          make package FINALPACKAGE=1
-          
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ManusTweak-Dylib
-          path: .theos/obj/debug/*.dylib
+TWEAK_NAME = ManusTweak
+ManusTweak_FILES = Tweak.x
+ManusTweak_CFLAGS = -fobjc-arc
+
+include $</LaTex>(THEOS_MAKE_PATH
