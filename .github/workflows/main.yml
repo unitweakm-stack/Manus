@@ -9,14 +9,14 @@ jobs:
 
       - name: Setup Theos
         run: |
-          # Agar papka bo'lsa, uni o'chirib tashlaymiz va qaytadan yuklaymiz
           sudo rm -rf /Users/runner/theos
           git clone --recursive https://github.com/theos/theos.git /Users/runner/theos
           
-          # SDK-larni yuklash (faqat kerakli qismini)
-          git clone https://github.com/theos/sdks.git /tmp/sdks
-          cp -r /tmp/sdks/*.sdk /Users/runner/theos/sdks/
-          rm -rf /tmp/sdks
+          # SDK-larni yuklash (Kompilyatsiya uchun shart)
+          mkdir -p /Users/runner/theos/sdks
+          curl -L https://github.com/theos/sdks/raw/master/iPhoneOS14.5.sdk.tar.xz -o /tmp/sdk.tar.xz
+          tar -xf /tmp/sdk.tar.xz -C /Users/runner/theos/sdks/
+          rm /tmp/sdk.tar.xz
 
       - name: Build Tweak
         run: |
