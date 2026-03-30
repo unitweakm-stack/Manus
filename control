@@ -1,0 +1,9 @@
+Package: com.yourname.manustweak
+Name: ManusTweak
+Depends: mobilesubstrate
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: Manus App Limit Reset to 300
+Maintainer: YourName
+Author: YourName
+Section: Tweaks
