@@ -6,13 +6,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Theos
         run: |
+          export THEOS=~/theos
           bash -c "<LaTex>$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
-          echo "THEOS=~/theos" >> $</LaTex>GITHUB_ENV
+          echo "THEOS=$</LaTex>THEOS" >> $GITHUB_ENV
+
       - name: Build Tweak
         run: |
           make package FINALPACKAGE=1
+          
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
