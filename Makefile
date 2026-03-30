@@ -7,4 +7,4 @@ TWEAK_NAME = ManusTweak
 ManusTweak_FILES = Tweak.x
 ManusTweak_CFLAGS = -fobjc-arc
 
-include $</LaTex>(THEOS_MAKE_PATH)/tweak.mk
+include $</LaTex>(THEOS_MAKE_PATH
